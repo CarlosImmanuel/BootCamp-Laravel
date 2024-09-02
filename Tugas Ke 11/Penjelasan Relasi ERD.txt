@@ -1,0 +1,4 @@
+Relasi ERD :
+1. users 1 to 1 dengan profile, Primary Key users menjadi Foreign Key di profile.
+2. categories 1 to many dengan books, aku kategori bisa terdapat banyak buku, PK categories menjadi FK di books.
+3. borrows menjadi tabel pivot(penampung) karena many to many antara users dan books, sehingga ada PK dari users dan books yang menjadi FK didalam tabel borrows (atribut), maka relasi users ke borrows menjadi 1 to many, relasi books ke borrows juga 1 to many.
