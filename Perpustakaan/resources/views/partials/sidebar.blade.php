@@ -5,7 +5,13 @@
         <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        @auth
+        <a href="#" class="d-block">{{Auth::user()->name}}</a>
+        @endauth
+
+        @guest
+        <a href="#" class="d-block">Belum Login</a>
+        @endguest
       </div>
     </div>
 
@@ -34,6 +40,26 @@
                 </p>
             </a>
             </li>
+
+            @auth
+            <li class="nav-item">
+                <a href="/category" class="nav-link">
+                    <i class="nav-icon fas fa-list"></i>
+                    <p>
+                    Kategori
+                    </p>
+                </a>
+                </li>
+            @endauth
+
+            <li class="nav-item">
+                <a href="/books" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>
+                    Buku
+                    </p>
+                </a>
+                </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -57,6 +83,31 @@
             </li>
           </ul>
         </li>
+
+        @auth
+        <li class="nav-item bg-danger">
+            <a class="nav-link" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </li>
+        @endauth
+
+        @guest
+        <li class="nav-item bg-info">
+            <a href="/login" class="nav-link">
+                <p>
+                Login
+                </p>
+            </a>
+            </li>
+        @endguest
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
